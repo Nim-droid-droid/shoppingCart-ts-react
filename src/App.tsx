@@ -1,8 +1,17 @@
+import {Routes, Route} from "react-router-dom"
+import {Container} from "react-bootstrap"
+
 export default function App() {
 
   return (
     <>
-      <h1>Hello World</h1>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Container>
     </>
   )
 }
