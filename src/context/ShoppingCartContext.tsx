@@ -1,5 +1,6 @@
-import { createContext, useContext, ReactNode } from "react";
+import { createContext, useContext, ReactNode, useState } from "react";
 
+// TO DETAILED NOTES DESCRIBING EXACTLY HOW CONTEXT & PROVIDER HEE ARE WORKING
 
 // initially ShoppingCartContext context val is an empty obj
 type ShoppingCartContext = {
@@ -25,7 +26,18 @@ type ShoppingCartProviderProps = {
   children: ReactNode
 }
 
+type CartItem = {
+  // id has the type number. With this i can look up all the info like items price, title etc. Using title name as id isnt good cuz what if the items name/title changes in the future
+  id: number
+  // with quantity i can calculate what the total price is going to be cuz: price X quantity
+  quantity: number
+}
+
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
+  // storage place for cart items
+  // cartItems state has an empty arr as its useState & type CartItem array 
+  const [cartItems, setCartItems] = useState<CartItem[]>([])
+
   return(
     <ShoppingCartContext.Provider value={{}}>
       { children }
