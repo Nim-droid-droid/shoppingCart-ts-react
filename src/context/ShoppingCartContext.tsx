@@ -2,7 +2,6 @@ import { createContext, useContext, ReactNode, useState } from "react";
 
 // TO DETAILED NOTES DESCRIBING EXACTLY HOW CONTEXT & PROVIDER HEE ARE WORKING
 
-// initially ShoppingCartContext context val is an empty obj
 type ShoppingCartContext = {
   // this type needs the ability/funct to add/remove items increment/decrement its quantity
   // returns a number
@@ -13,6 +12,8 @@ type ShoppingCartContext = {
   incrementCartQuantity: (id: number) => void
   decrementCartQuantity: (id: number) => void
 }
+
+// initially ShoppingCartContext context val is an empty obj
 const ShoppingCartContext = createContext({});
 
 export function useShoppingCart(){
@@ -37,6 +38,14 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // storage place for cart items
   // cartItems state has an empty arr as its useState & type CartItem array 
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+
+  function getItemQuantity(id: number){
+    // (?. Optional chaining) If this vehicle equates to something, Then get the quantity on it, otherwise if there's nothing return 0 
+    // find the item that === to the current ID
+      // If theres a match (item's ID === current ID) return the quantity
+      // Otherwise return default value which is 0
+    return cartItems.find(item => item.id === id)?.quantity || 0
+  }
 
   return(
     <ShoppingCartContext.Provider value={{}}>
