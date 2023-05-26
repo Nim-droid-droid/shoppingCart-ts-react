@@ -1,6 +1,5 @@
 import { createContext, useContext, ReactNode, useState } from "react";
 
-// TO DETAILED NOTES DESCRIBING EXACTLY HOW CONTEXT & PROVIDER HEE ARE WORKING
 
 type ShoppingCartContext = {
   // this type needs the ability/funct to add/remove items increment/decrement its quantity
@@ -21,6 +20,7 @@ export function useShoppingCart(){
     useContext(ShoppingCartContext)
   )
 }
+
 
 // Provider for ShoppingCartContext & rendering out the shpping card so users can view whats inside their cart
 type ShoppingCartProviderProps = {
@@ -47,8 +47,34 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     return cartItems.find(item => item.id === id)?.quantity || 0
   }
 
+  function incrementCartQuantity(id:number){
+    // currItems is my current list of items
+    // get list of current items…
+    setCartItems(currItems => {
+      // now modify the list
+        // if i find that current item inside the cart
+        // null -> also check if current item doesnt exist/is not in cart, then add it to cart…
+      if(currItems.find(item => item.id === id) == null){
+        // return all cart items & add the new item, which has an id & quantity of 1
+        return [...currItems, { id, quantity:1 }]
+      } else{
+        // else for each item in the current list of items…
+        return currItems.map(item => {
+          // if the item id === id
+          if(item.id === id){
+            // then return all cart items & add that item (that matched the id) & add 1 to that items quantity
+            return {...item, quantity : item.quantity + 1 }
+          } else{
+            // else just return the item as it is, without any changes
+            return item
+          }
+        })
+      }
+    })
+  }
+
   return(
-    <ShoppingCartContext.Provider value={{}}>
+    <ShoppingCartContext.Provider value={{ getItemQuantity, incrementCartQuantity}}>
       { children }
     </ShoppingCartContext.Provider>
   )
