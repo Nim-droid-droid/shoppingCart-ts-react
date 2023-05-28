@@ -78,17 +78,16 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     // get list of current items…
     setCartItems(currItems => {
       // now modify the list
-        // if i find that current item inside the cart
-        // null -> also check if current item doesnt exist/is not in cart, then add it to cart…
+        // if i find that current item inside the cart === current id (decrementCartQuantity id para) exist, check if it's quantity =1, Then I want to get rid of it.
       if(currItems.find(item => item.id === id)?.quantity === 1){
-        // return all cart items & add the new item, which has an id & quantity of 1
+        // From the list of items (currItems) filter out all the items thats NOT equal to current id. Return the new list where none of the items == current ID
         return currItems.filter(item => item.id !== id)
       } else{
         // else for each item in the current list of items…
         return currItems.map(item => {
-          // if the item id === id
+          // if the item id === current id 
           if(item.id === id){
-            // then return all cart items & add that item (that matched the id) & add 1 to that items quantity
+            // then return all cart items & remove that item's quantity meaning remove the item (that matched the id) from the list
             return {...item, quantity : item.quantity - 1 }
           } else{
             // else just return the item as it is, without any changes
@@ -99,8 +98,19 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     })
   }
 
+  function removeItemQuantity(id:number){
+    setCartItems(currItems => {
+      // filter out the items who's id != to current id (removeItemQuantity id para val)
+      return currItems.filter(item => item.id !== id)
+    })
+  }
+
   return(
-    <ShoppingCartContext.Provider value={{ getItemQuantity, incrementCartQuantity, decrementCartQuantity}}>
+    <ShoppingCartContext.Provider value={{ 
+      getItemQuantity, 
+      incrementCartQuantity, 
+      decrementCartQuantity,
+      removeItemQuantity}}>
       { children }
     </ShoppingCartContext.Provider>
   )
