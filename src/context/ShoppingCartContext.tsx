@@ -1,27 +1,5 @@
 import { createContext, useContext, ReactNode, useState } from "react";
 
-
-type ShoppingCartContext = {
-  // this type needs the ability/funct to add/remove items increment/decrement its quantity
-  // returns a number
-  getItemQuantity: (id: number) => number
-  // doesnt return anything
-  removeItemQuantity: (id: number) => void
-  // no addToCart func cuz its the same thing as incrementCartQuantity
-  incrementCartQuantity: (id: number) => void
-  decrementCartQuantity: (id: number) => void
-}
-
-// initially ShoppingCartContext context val is an empty obj
-const ShoppingCartContext = createContext({});
-
-export function useShoppingCart(){
-  return(
-    useContext(ShoppingCartContext)
-  )
-}
-
-
 // Provider for ShoppingCartContext & rendering out the shpping card so users can view whats inside their cart
 type ShoppingCartProviderProps = {
   children: ReactNode
@@ -33,6 +11,34 @@ type CartItem = {
   // with quantity i can calculate what the total price is going to be cuz: price X quantity
   quantity: number
 }
+
+type ShoppingCartContext = {
+  // this type needs the ability/funct to add/remove items increment/decrement its quantity
+  // returns a number
+  getItemQuantity: (id: number) => number
+  // doesnt return anything
+  removeItemQuantity: (id: number) => void
+  // no addToCart func cuz its the same thing as incrementCartQuantity
+  incrementCartQuantity: (id: number) => void
+  decrementCartQuantity: (id: number) => void
+
+  openCart: () => void
+  closeCart: () => void
+  // Total number of items in the cart. show the item quantity in the shopping cart icon's badge
+  cartQuantity: number
+  // cart items arr.
+  cartItems: CartItem[]
+
+}
+// initially ShoppingCartContext context val is an empty obj
+const ShoppingCartContext = createContext({});
+
+export function useShoppingCart(){
+  return(
+    useContext(ShoppingCartContext)
+  )
+}
+
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // storage place for cart items
@@ -110,7 +116,9 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       getItemQuantity, 
       incrementCartQuantity, 
       decrementCartQuantity,
-      removeItemQuantity}}>
+      removeItemQuantity,
+      cartItems
+      }}>
       { children }
     </ShoppingCartContext.Provider>
   )
