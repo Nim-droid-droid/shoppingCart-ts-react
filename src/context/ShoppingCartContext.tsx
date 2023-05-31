@@ -45,6 +45,9 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // cartItems state has an empty arr as its useState & type CartItem array 
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
+  // Count up all the different item quantities for every item in the cart & return the cart quantity
+    // return item.quantity + quantity. quantity accu by default starts at 0
+  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
   function getItemQuantity(id: number){
     // (?. Optional chaining) If this vehicle equates to something, Then get the quantity on it, otherwise if there's nothing return 0 
     // find the item that === to the current ID
@@ -117,7 +120,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       incrementCartQuantity, 
       decrementCartQuantity,
       removeItemQuantity,
-      cartItems
+      cartItems,
+      cartQuantity
       }}>
       { children }
     </ShoppingCartContext.Provider>
