@@ -41,13 +41,22 @@ export function useShoppingCart(){
 
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
+  // by default the cart is closed (so false)
+  const [isOpen, setIsOpen] = useState(false)
+
   // storage place for cart items
-  // cartItems state has an empty arr as its useState & type CartItem array 
+  // cartItems state has an empty arr as its useState & type CartItem array   
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   // Count up all the different item quantities for every item in the cart & return the cart quantity
     // return item.quantity + quantity. quantity accu by default starts at 0
-  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
+  const cartQuantity = cartItems.reduce(
+    (quantity, item) => item.quantity + quantity, 
+    0 )
+  
+  const openCart = () => setIsOpen(true)
+  const closeCart = () => setIsOpen(false)
+  
   function getItemQuantity(id: number){
     // (?. Optional chaining) If this vehicle equates to something, Then get the quantity on it, otherwise if there's nothing return 0 
     // find the item that === to the current ID
@@ -120,6 +129,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       incrementCartQuantity, 
       decrementCartQuantity,
       removeItemQuantity,
+      openCart, 
+      closeCart,
       cartItems,
       cartQuantity
       }}>
