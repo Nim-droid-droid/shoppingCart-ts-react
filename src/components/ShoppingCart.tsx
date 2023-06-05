@@ -1,9 +1,15 @@
 import { Offcanvas } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 
+// without this get the ERROR: Parameter 'isOpen' implicitly has an 'any' type
+type ShoppingCartProps = {
+  isOpen: boolean
+}
 
 // pass isOpen to ShoppingCart() so i can use it in show{}
-export function ShoppingCart(isOpen){
+  // in ShoppingCartContext file isOpen state was passed into ShoppingCart cmpnt as a prop also called isOpen
+export function ShoppingCart({isOpen} : ShoppingCartProps){
+
   const {closeCart} = useShoppingCart()
   return(
     // Bootstrap's offvanva gives the panel a slide in effect
