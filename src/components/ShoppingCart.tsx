@@ -9,8 +9,8 @@ type ShoppingCartProps = {
 // pass isOpen to ShoppingCart() so i can use it in show{}
   // in ShoppingCartContext file isOpen state was passed into ShoppingCart cmpnt as a prop also called isOpen
 export function ShoppingCart({isOpen} : ShoppingCartProps){
-
-  const { closeCart } = useShoppingCart()
+// grab/destructure closeCart, CartItem from useShoppingCart()
+  const { closeCart, CartItem } = useShoppingCart()
   return(
     // Bootstrap's offvanva gives the panel a slide in effect
       // If you see clicks outside of panel, it closes
@@ -28,6 +28,15 @@ export function ShoppingCart({isOpen} : ShoppingCartProps){
         Gap space of 3 to give each item some space between each other.
         */}
         <Stack gap={3}>
+          {/* 
+          loop through cartItems 
+          & for each item return a component called CartItem.
+            Each cmpnnt has a unique key thats the item's id
+          Spread out entire item outside of that cart
+          */}
+          {cartItems.map(item => (
+            <CartItem key={item.id} {...item} />
+          ))}
 
           {/* Total price styling */}
           {/* 
