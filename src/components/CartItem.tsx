@@ -10,7 +10,7 @@ type CartItemProps = {
 // now id & quantity paras have the type CartItemProps where both id & quantity have number data type
   // i have destructure id & quantity from CartItemProps
 export function CartItem({ id, quantity }: CartItemProps){
-  const { removeItemQuantity } = useShoppingCart()
+  const { removeFromCart } = useShoppingCart()
   const item = storeItems.find(i => i.id === id)
 
   if (item == null) return null
@@ -18,7 +18,7 @@ export function CartItem({ id, quantity }: CartItemProps){
   return(
     <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
       <img
-        src={item.imgUrl}
+        src={item.imgURL}
         style={{ width: "125px", height: "75px", objectFit: "cover" }}
       />
 
@@ -40,7 +40,7 @@ export function CartItem({ id, quantity }: CartItemProps){
       <Button
         variant="outline-danger"
         size="sm"
-        onClick={() => removeItemQuantity(item.id)}
+        onClick={() => removeFromCart(item.id)}
       >
         &times;
       </Button>
