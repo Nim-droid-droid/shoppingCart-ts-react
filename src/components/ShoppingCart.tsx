@@ -1,5 +1,8 @@
 import { Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { CartItem } from "./CartItem"
+import { formatCurrency } from "../utilities/formatCurrency";
+import storeItems from "../data/items.json"
 
 // without this get the ERROR: Parameter 'isOpen' implicitly has an 'any' type
 type ShoppingCartProps = {
@@ -10,7 +13,7 @@ type ShoppingCartProps = {
   // in ShoppingCartContext file isOpen state was passed into ShoppingCart cmpnt as a prop also called isOpen
 export function ShoppingCart({isOpen} : ShoppingCartProps){
 // grab/destructure closeCart, CartItem from useShoppingCart()
-  const { closeCart, CartItem } = useShoppingCart()
+  const { closeCart, cartItems } = useShoppingCart()
   return(
     // Bootstrap's offvanva gives the panel a slide in effect
       // If you see clicks outside of panel, it closes
@@ -45,6 +48,11 @@ export function ShoppingCart({isOpen} : ShoppingCartProps){
           font size of five
            */}
           <div className="ms-auto fw-bold fs-5">
+            Total {formatCurrency(cartItems.reduce((total, cartItem) => {
+              const item = storeItems.find(i => i.id === cartItem.id)
+              return total + (item?.price || 0) * cartItem.quantity
+            }, 0)
+            )}
           </div>
         </Stack>
       </Offcanvas.Body>
