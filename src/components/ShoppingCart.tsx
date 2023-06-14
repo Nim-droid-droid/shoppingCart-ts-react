@@ -48,6 +48,7 @@ export function ShoppingCart({isOpen} : ShoppingCartProps){
           font size of five
            */}
           <div className="ms-auto fw-bold fs-5">
+            {/* reduce the cart items total down to a single val, then return it formatted */}
             Total {formatCurrency(cartItems.reduce((total, cartItem) => {
               const item = storeItems.find(i => i.id === cartItem.id)
               return total + (item?.price || 0) * cartItem.quantity
