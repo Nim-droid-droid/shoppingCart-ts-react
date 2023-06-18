@@ -5,6 +5,7 @@ import { useState } from "react"
 
 // make this custom hook work with custom generic types (in this case <T>) & different props
 
+// MAKE SURE TO ADD THIS FUN TO CONTEXT FILE
 
 // <T> has a key which is of str data type, the initial val of the key will be whatever is the type of T or a funct that retruns this type of T
   // What is the type of T? Whatever i pass (i passed an arr of cart items) into useLocalStorage <> ShoppingCartContext.tsx
@@ -18,7 +19,7 @@ export function useLocalStorage<T>(key: string, initialValue: T | (() => T)){
     if (jsonValue != null) return JSON.parse(jsonValue)
 
     if (typeof initialValue === "function"){
-      return initialValue()
+      return (initialValue as () => T)()
     } else {
       return initialValue
     }
