@@ -1,4 +1,6 @@
 import { createContext, useContext, ReactNode, useState } from "react";
+import { ShoppingCart } from "../components/ShoppingCart"
+import { useLocalStorage } from "../hooks/useLocalStorage"
 
 // Provider for ShoppingCartContext & rendering out the shpping card so users can view whats inside their cart
 type ShoppingCartProviderProps = {
@@ -17,7 +19,7 @@ type ShoppingCartContext = {
   // returns a number
   getItemQuantity: (id: number) => number
   // doesnt return anything
-  removeItemQuantity: (id: number) => void
+  removeFromCart: (id: number) => void
   // no addToCart func cuz its the same thing as incrementCartQuantity
   incrementCartQuantity: (id: number) => void
   decrementCartQuantity: (id: number) => void
@@ -46,7 +48,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
   // storage place for cart items
   // cartItems state has an empty arr as its useState & type CartItem array   
-  const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping-cart",[])
 
   // Count up all the different item quantities for every item in the cart & return the cart quantity
     // return item.quantity + quantity. quantity accu by default starts at 0
@@ -116,9 +118,9 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     })
   }
 
-  function removeItemQuantity(id:number){
+  function removeFromCart(id:number){
     setCartItems(currItems => {
-      // filter out the items who's id != to current id (removeItemQuantity id para val)
+      // filter out the items who's id != to current id (removeFromCart id para val)
       return currItems.filter(item => item.id !== id)
     })
   }
@@ -128,13 +130,15 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       getItemQuantity, 
       incrementCartQuantity, 
       decrementCartQuantity,
-      removeItemQuantity,
+      removeFromCart,
       openCart, 
       closeCart,
       cartItems,
       cartQuantity
       }}>
       { children }
+      {/* section for shopping cart panel */}
+      <ShoppingCart isOpen={isOpen} />
     </ShoppingCartContext.Provider>
   )
   }
