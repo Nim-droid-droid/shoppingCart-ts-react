@@ -1,7 +1,7 @@
 // Custom Hook
 // Even if user refreshes the page, items stay in the cart
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 // make this custom hook work with custom generic types (in this case <T>) & different props
 
@@ -33,4 +33,10 @@ export function useLocalStorage<T>(key: string, initialValue: T | (() => T)){
       return initialValue
     }
   })
+// ths execute every time the key or val changes - it stores the val back in local storage
+  useEffect( () => {
+    localStorage.setItem(key, JSON.stringify(value))
+  }, [key, value])
+
+  return [value, setValue]
 }
