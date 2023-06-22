@@ -37,6 +37,7 @@ export function useLocalStorage<T>(key: string, initialValue: T | (() => T)){
   useEffect( () => {
     localStorage.setItem(key, JSON.stringify(value))
   }, [key, value])
-
-  return [value, setValue]
+// an array with T with val of setValue
+  // so the 1st el of the arr is always going to have the type of 'value' & the 2nd el is always going to have the type of 'setValue'
+  return [value, setValue] as [typeof value, typeof setValue]
 }
