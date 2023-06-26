@@ -3,7 +3,11 @@
 
 // apply all ur react knowldg in this prj
 
+import {useState} from "react"
+
 export function Cards(){
+  const [state, setState] = useState()
+
   return(
     <></>
   )
