@@ -1,0 +1,26 @@
+[
+  {
+    "id":1,
+    "name": "luna",
+    "price": 15.99,
+    "imgURL": "/images/lunaToy.jpeg"
+  },
+  {
+    "id":2,
+    "name": "mercury",
+    "price": 15.99,
+    "imgURL": "/images/mercuryToy.jpeg"
+  },
+  {
+    "id":3,
+    "name": "sailor-moon",
+    "price": 15.99,
+    "imgURL": "/images/sailorMoonToy.jpeg"
+  },
+  {
+    "id":4,
+    "name": "venus",
+    "price": 15.99,
+    "imgURL": "/images/venusToy.jpeg"
+  }
+]
