@@ -1,7 +1,7 @@
 [
   {
     "id":1,
-    "name": "luna",
+    "name": "Luna",
     "img_URL": "/images/chars/luna.jpeg",
     "height": "1.63 m",
     "abilities":"Luna's most distinctive power is her ability to talk like and communicate with human beings. This trait is only shared by Artemis and their daughter Diana.",
@@ -9,7 +9,7 @@
   },
   {
     "id":2,
-    "name": "mercury",
+    "name": "Sailor Mercury",
     "img_URL": "/images/chars/sailorMercury.jpeg",
     "height": "5' 2",
     "abilities":"Sailor Mercury has the power to create and manipulate water, she uses her water-manipulating capabilities only to create solid and dense clouds of mist and fog, chilling and blinding the enemy while her allies prepare more direct attacks.",
@@ -17,7 +17,7 @@
   },
   {
     "id":3,
-    "name": "sailor-moon",
+    "name": "Sailor Moon",
     "img_URL": "/images/chars/sailorMoon.jpeg",
     "height": "4'11",
     "abilities":"By managing to separate Chaos from the Galaxy Cauldron; the source of all planets, stars, and life in the universe, she proved her universe-level of power, and this is even before factoring in the massive boost from Lambda Power.",
@@ -25,7 +25,7 @@
   },
   {
     "id":4,
-    "name": "venus",
+    "name": "Sailor Venus",
     "img_URL": "/images/chars/sailorVenus.jpeg",
     "height": "5' 2",
     "abilities":"Sailor Venus can fire beams of light to blast (Crescent Beam Smash) or restrain/whip (Love-Me Chain Encircle) opponents. She later developed the 'Love and Beauty Shock' attack, which fired projectiles at her targets.",
