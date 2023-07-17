@@ -27,7 +27,7 @@
     "id":4,
     "name": "Sailor Venus",
     "img_URL": "/images/chars/sailorVenus.jpeg",
-    "height": "5' 2",
+    "height": "5'2",
     "abilities":"Sailor Venus can fire beams of light to blast (Crescent Beam Smash) or restrain/whip (Love-Me Chain Encircle) opponents. She later developed the 'Love and Beauty Shock' attack, which fired projectiles at her targets.",
     "description": "Minako is a pretty young teenager with light blue eyes, and knee-length blonde hair, which she usually wears loose, with a red bow. As Sailor Venus, she wears a sailor fuku (school uniform) with a short orange skirt, a dark blue bow on her chest, and a yellow one on her lower back."
   },
@@ -35,7 +35,7 @@
   "id":5,
   "name": "Sailor Jupiter",
   "img_URL": "/images/chars/",
-  "height": "",
+  "height": "5'6",
   "abilities":"",
   "description": ""
   }
